@@ -364,7 +364,7 @@ def runNixTest(prefix) {
             println "Test with Race but no Fuse"
             sh 'go test -race -c -o test.race'
             timeout(12) {
-                sh './test.race -test.v -test.timeout 12m'
+                sh './test.race -test.timeout 12m'
             }
         }
     }
@@ -373,7 +373,7 @@ def runNixTest(prefix) {
             println "Test with Fuse but no Race"
             sh 'go test -c -tags fuse -o test.fuse'
             timeout(12) {
-                sh './test.fuse -test.v -test.timeout 12m'
+                sh './test.fuse -test.timeout 12m'
             }
         }
     }
