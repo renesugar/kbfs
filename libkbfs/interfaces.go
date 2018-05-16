@@ -431,7 +431,8 @@ type KBFSOps interface {
 type merkleRootGetter interface {
 	// GetCurrentMerkleRoot returns the current root of the global
 	// Keybase Merkle tree.
-	GetCurrentMerkleRoot(ctx context.Context) (keybase1.MerkleRootV2, error)
+	GetCurrentMerkleRoot(ctx context.Context) (
+		keybase1.MerkleRootV2, time.Time, error)
 }
 
 type gitMetadataPutter interface {
