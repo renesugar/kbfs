@@ -198,6 +198,10 @@ func filterRevokedKeys(
 		if key.Base.Revocation != nil {
 			info.Time = key.Base.Revocation.Time
 			info.MerkleRoot = key.Base.Revocation.PrevMerkleRootSigned
+			// Adding one gets us the minimum possible merkle root
+			// that could have contained the revocation.
+			// TODO(CORE-7924): get the exact seqno from the service.
+			info.MerkleRoot.Seqno++
 		} else if reset != nil {
 			info.Time = keybase1.ToTime(keybase1.FromUnixTime(reset.Ctime))
 			info.MerkleRoot.Seqno = reset.MerkleRoot.Seqno
