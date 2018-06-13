@@ -187,7 +187,8 @@ func (c *chatLocal) GetGroupedInbox(
 	}
 
 	sort.Slice(handlesAndTimes, func(i, j int) bool {
-		return handlesAndTimes[i].mtime.Before(handlesAndTimes[j].mtime)
+		// Reverse sort so newest conversation is at index 0.
+		return handlesAndTimes[i].mtime.After(handlesAndTimes[j].mtime)
 	})
 	for i := 0; i < maxChats && i < len(handlesAndTimes); i++ {
 		results = append(results, handlesAndTimes[i].h)
